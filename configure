@@ -1236,7 +1236,7 @@ config UNIX_OR_WIN32 "$unix_or_win32"
 config UNIXLIB "$unixlib"
 config GRAPHLIB "$graphlib"
 
-otherlibraries="$unixlib str dynlink bigarray"
+otherlibraries="$unixlib str dynlink bigarray genprint"
 
 # Spacetime profiling is only available for native code on 64-bit targets.
 
