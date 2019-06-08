@@ -50,7 +50,7 @@ genprint.cma: $(CAMLOBJS)
 	$(CAMLC) -a -o $@ \
 	         $(COMPILEROBJS) $(CAMLOBJS) $(LINKOPTS)
 
-genprint.cmx: $(CAMLOBJS_NAT)
+genprint.cmxa: $(CAMLOBJS_NAT)
 	$(CAMLOPT) -a -o $@ \
 	         $(COMPILEROBJS_NAT) $(CAMLOBJS_NAT) $(LINKOPTS)
 
