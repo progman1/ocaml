@@ -1,0 +1,35 @@
+opam-version: "2.0"
+version: 4.07.1+genprint
+synopsis: "Toplevel value printing anywhere."
+description: """
+General value printing mechanism identical to toplevel evaluation. For toplevel and compiler.
+"""
+depends: [
+  "base-unix" {post}
+  "base-bigarray" {post}
+  "base-threads" {post}
+]
+conflict-class: "ocaml-core-compiler"
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" prefix "-with-debug-runtime"]
+    {os != "openbsd" & os != "freebsd" & os != "macos"}
+  [
+    "./configure"
+    "-prefix"
+    prefix
+    "-with-debug-runtime"
+    "-cc"
+    "cc"
+    "-aspp"
+    "cc -c"
+  ] {os = "openbsd" | os = "freebsd" | os = "macos"}
+  [make "world"]
+  [make "world.opt"]
+]
+install: [make "install"]
+maintainer: "progman1"
+url {
+  src: "https://github.com/progman1/ocaml.git#4.07.1+genprint"
+}
