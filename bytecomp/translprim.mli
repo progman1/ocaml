@@ -27,6 +27,8 @@ val remove_exception_ident : Ident.t -> unit
 val clear_used_primitives : unit -> unit
 val get_used_primitives: unit -> Path.t list
 
+val register_typeof_func: path:string -> (Types.type_expr * Env.t -> Lambda.lambda) -> unit
+
 val transl_primitive :
   Location.t -> Primitive.description -> Env.t ->
   Types.type_expr -> Path.t option -> Lambda.lambda
@@ -41,6 +43,7 @@ val transl_primitive_application :
 type error =
   | Unknown_builtin_primitive of string
   | Wrong_arity_builtin_primitive of string
+  | Wrong_arity of string
 
 exception Error of Location.t * error
 
