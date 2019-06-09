@@ -1,3 +1,5 @@
+(* abstracted type for ocaml type representation *)
+type t = int
 
 
 (* a registry of types and their environments *)
@@ -7,8 +9,9 @@ let tyhash=Hashtbl.create 5
 let create_key_for_type (ty,env)=
   let h=Hashtbl.hash ty in
   Hashtbl.add tyhash h (ty,env);
-  (* now string to be compat with compiler version... Lambda.(Lconst(Const_pointer h)) *)
-  Lambda.(Lconst(Const_immstring (string_of_int h)))
+  Lambda.(Lconst(Const_pointer h))
+  (* now string to be compat with compiler version... but no need, make abstract in mli.*)
+  (* Lambda.(Lconst(Const_immstring (string_of_int h))) *)
 
 (*
   let outv = outval_of_value env v ty in
@@ -28,7 +31,7 @@ external prs: string -> 'a -> unit = "%typeof" (* fake primitive used so as to n
 let prs_with_type tyh s v =
   let ty,env=
     try
-      Hashtbl.find tyhash (int_of_string tyh)
+      Hashtbl.find tyhash (tyh)
   with Not_found->
     failwith "unknown type key. Cannot use toplevel with the compiler."
   in

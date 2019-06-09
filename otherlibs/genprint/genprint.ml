@@ -19,6 +19,9 @@ open Types
 open Outcometree
 open Genprinti
 
+(* abstracted type for ocaml type representation *)
+type t = string
+
 (* let pp fmt = Printf.kfprintf (fun ch-> Printf.fprintf ch "\n"; flush stdout) stdout fmt *)
 
 
