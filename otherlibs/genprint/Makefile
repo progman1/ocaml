@@ -55,10 +55,16 @@ genprint.cmxa: $(CAMLOBJS_NAT)
 	         $(COMPILEROBJS_NAT) $(CAMLOBJS_NAT) $(LINKOPTS)
 
 install:
-	$(INSTALL_DATA) genprint.cmi genprint.cmti genprint.cma genprint.mli "$(INSTALL_LIBDIR)"
+	$(INSTALL_DATA) \
+	  $(LIBNAME).cma $(CMIFILES) $(CMIFILES:.cmi=.mli) \
+          $(CMIFILES:.cmi=.cmti) \
+	  "$(INSTALL_LIBDIR)/"
 
 installopt:
-	$(INSTALL_DATA) genprint.cmi genprint.cmxa "$(INSTALL_LIBDIR)"
+	$(INSTALL_DATA) \
+	   $(CAMLOBJS_NAT) $(LIBNAME).cmxa $(LIBNAME).$(A) \
+	   "$(INSTALL_LIBDIR)/"
+	cd "$(INSTALL_LIBDIR)"; $(RANLIB) $(LIBNAME).$(A)
 
 partialclean:
 	rm -f *.cm[ioaxt] *.cmti *.cmxa
