@@ -2297,8 +2297,10 @@ toplevel/expunge.cmo : bytecomp/symtable.cmi bytecomp/runtimedef.cmi \
     utils/misc.cmi typing/ident.cmi bytecomp/bytesections.cmi
 toplevel/expunge.cmx : bytecomp/symtable.cmx bytecomp/runtimedef.cmx \
     utils/misc.cmx typing/ident.cmx bytecomp/bytesections.cmx
-toplevel/genprint.cmo : toplevel/genprint.cmi
-toplevel/genprint.cmx : toplevel/genprint.cmi
+toplevel/genprint.cmo : bytecomp/translprim.cmi toplevel/toploop.cmi \
+    bytecomp/lambda.cmi toplevel/genprint.cmi
+toplevel/genprint.cmx : bytecomp/translprim.cmx toplevel/toploop.cmx \
+    bytecomp/lambda.cmx toplevel/genprint.cmi
 toplevel/genprint.cmi :
 toplevel/genprintval.cmo : typing/types.cmi typing/printtyp.cmi \
     typing/predef.cmi typing/path.cmi typing/outcometree.cmi \
